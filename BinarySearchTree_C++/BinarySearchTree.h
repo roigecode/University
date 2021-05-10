@@ -16,6 +16,38 @@
 #include "BinaryTreeNode.h"
 using namespace std;
 
+/*-----------------------------------------------------------------------------
+ * COST TEORIC DELS FUNCIONS:
+ * ----------------------------------------------------------------------------
+ *  BinarySearchTree()  :=  O(1) 
+ *  BinarySearchTree()  :=  O(n)
+ *  ~BinarySearchTree() :=  O(n)
+ * 
+ *  isEmpty()           :=  O(1)
+ *  size()              :=  O(1)
+ *  sizeRecursiu()      :=  O(n)
+ *  height()            :=  O(1)
+ *  getRoot()           :=  O(1)
+ *  add()               :=  O(MASTER)
+ *  has()               :=  O(n)
+ *  valuesOf()          :=  O(1) // AMB for per visualitzar testS: O(n)
+ *  showKeysPreorder()  :=  O(MASTER)
+ *  showKeysInorder()   :=  O(MASTER)
+ *  showKeysPostorder() :=  O(MASTER)
+ *  printNodesNivell()  :=  O(MASTER)
+ * 
+ *  equals()            :=  O()
+ *  getLeafs()          :=  O()
+ *  find()              :=  O()
+ *
+ *  _find()             :=  O()
+ *  equalsAux()         :=  O()
+ *  sizeRec()           :=  O()
+ *  printNodesNivell()  :=  O()
+ *  getLeafsAux()       :=  O()
+ * ----------------------------------------------------------------------------
+ */
+
 template <class K, class V>
 class BinarySearchTree {
 public:

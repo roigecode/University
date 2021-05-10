@@ -14,23 +14,23 @@ using namespace std;
 /*-----------------------------------------------------------------------------
  * COST TEORIC DELS FUNCIONS:
  * ----------------------------------------------------------------------------
- * Position(constructor amb paràmetre): O(1)
- * Position(constructor copia): O(n) on n = nombre d'elements que hi ha a orig
- * ~Position : O(n) on n = nombre d'elements a l'arbre
- * depth: O(n) en el pitjor cas, O(log(n)) casos normals
- * height: O(n) en el pitjor cas, O(log(n)) casos normals
- * getKey: O(1)
- * getValues: O(1)
- * parent: O(1)
- * left: O(1)
- * right: O(1)
- * setParent: O(1)
- * setLeft: O(1)
- * setRight: O(1)
- * isRoot: O(1)
- * isLeaf: O(1)
- * addValue: O(1)
- * operator==: O(1)
+ * Position(constructor amb paràmetre):= O(1)
+ * Position(constructor copia)        := O(n) on n = nombre d'elements a orig
+ * ~Position                          := O(n) on n = nombre d'elements a l'arbre
+ * depth                              := O(n) worst case, O(log(n)) casos normals
+ * height                             := O(n) worst case, O(log(n)) casos normals
+ * getKey                             := O(1)
+ * getValues                          := O(1)
+ * parent                             := O(1)
+ * left                               := O(1)
+ * right                              := O(1)
+ * setParent                          := O(1)
+ * setLeft                            := O(1)
+ * setRight                           := O(1)
+ * isRoot                             := O(1)
+ * isLeaf                             := O(1)
+ * addValue                           := O(1)
+ * operator==                         := O(1)
  * ----------------------------------------------------------------------------
  */
 
