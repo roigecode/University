@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=P3Arbres
+PROJECTNAME=BinarySearchTree_C++
 
 # Active Configuration
 DEFAULTCONF=Debug
