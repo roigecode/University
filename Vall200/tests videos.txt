@@ -1,0 +1,48 @@
+CONDICIONS INICIALS: vel: 10km/h vis: Dolenta
+11. (enseñarlo)
+
+	(explicar q estas condiciones iniciales implican:)
+	RM Fora de Servei: RM9
+	P  Fora de Servei: P9, P10
+
+1. 
+2.
+3.
+4.
+5. 
+6.
+
+(enseñar que funciona según lo de arriba)
+
+7.
+	Ejemplo input de pista a modificar incorrecto: 'P30'
+	Ejemplo input de estado incorrecto: "rimavera"
+	Modificación: P1 (Dura -> Primavera), enseñar el cambio con 1)
+
+8. enseñarlo y ya (puedes contarlo pero LoL)
+
+9.	Ejemplo input incorrecto entero negativo -30
+	Modificación 10 --> 40
+		11. (enseñar que cambia viento)
+		6. (enseñar que cierra RM1, 2, 3)
+		3. (enseñar que cierra P1, 2)
+	Modificación 40 --> 10
+		11.
+		5.
+		2.
+		(enseñar que vuelven a estar como antes)
+
+10.	Ejemplo input incorrecto "ona"
+	Modificación "Dolenta" -> "Bona"
+		11.
+		5. (enseñar Rm9 abierto)
+		2. (enseñar P9, 10 abierto)
+	Modificación "Bona" --> "Dolenta"
+		11.
+		6.
+		3.
+		(enseñar que vuelve a estar como antes)
+11. Condiciones al acabar
+12. exit
+
+		
