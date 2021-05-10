@@ -10,9 +10,10 @@
 #define BINARYTREENODE_H
 #include <vector>
 using namespace std;
+
 /*-----------------------------------------------------------------------------
- * | COST TEORIC DELS FUNCIONS: |
- * ------------------------------
+ * COST TEORIC DELS FUNCIONS:
+ * ----------------------------------------------------------------------------
  * Position(constructor amb paràmetre): O(1)
  * Position(constructor copia): O(n) on n = nombre d'elements que hi ha a orig
  * ~Position : O(n) on n = nombre d'elements a l'arbre
