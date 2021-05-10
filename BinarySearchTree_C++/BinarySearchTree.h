@@ -196,7 +196,7 @@ const std::vector<V>& BinarySearchTree<K, V>::valuesOf(const K& k) const {
     if (aux == nullptr)
         throw out_of_range("No existeix cap element amb key: " + to_string(k) + ".\n");
     else{
-        // Print per casos de prova - cal mirar cas array dins array per array[][][]:
+        // Print per casos de prova - cal mirar cas array dins array per arrays tridimensionals:
         for(const auto& i: aux->getValues())
             cout<<i<<" ";
         return aux->getValues();
