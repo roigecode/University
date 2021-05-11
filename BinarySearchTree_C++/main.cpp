@@ -16,14 +16,16 @@ using namespace std;
 int main(int argc, char** argv) {
     try{
         
-        // Es declara de forma estàtica per tant el destructor es cridarà
-        // automàticament al acabar l'execució:
+        // Construim un arbre que es declara de forma estàtica per tant 
+        //el destructor es cridarà automàticament al acabar l'execució:
         
         BinarySearchTree<int,int> primer;
         
+        // Creem dos arrays de prova per les Keys i els Values:
         int testKeys[] =   {2,0,8,45,76,5,3,40,50,99,250,82};
         int testValues[] = {5,5,1,88,99,12,9,11,3,77,123,19};
         
+        // Els afegim al arbre, dividim sizeof() entre 4 perquè són int's:
         for(unsigned i=0; i< sizeof(testKeys)/4 ; i++){
             primer.add(testKeys[i],testValues[i]);
         }
@@ -45,23 +47,25 @@ int main(int argc, char** argv) {
          * (6)  (no hi ha nodes)
          */
         
+        // Imprimim els nivells de l'arbre
         for(unsigned i=0; i<primer.height();i++){
             cout<<"\nNodes nivell "<< i<<": ";
             primer.printNodesNivell(i);
         }
         
+        // Comprovem que el nivell 6 estigui buit, no hauria d'imprimir res:
         cout << "\nNodes nivell 6: ";
-        // No hauria d imprimir res
         primer.printNodesNivell(6); 
         cout<<"\n\n";
         
+        // Imprimim els valors:
         for(auto& i : testKeys){
             cout<<"Value de "<<i<<": ";
             primer.valuesOf(i);
             cout<<"\n";
         }
         
-        //Imprimim el primer BST
+        //Imprimim el primer BST de les tres formes:
         cout << "\n\nPreOrder primer: ";
         primer.showKeysPreorder();
         
@@ -72,14 +76,21 @@ int main(int argc, char** argv) {
         primer.showKeysPostorder();
          cout <<"\n\n";
          
+        // Fem una copia del primer arbre en un 'segon' BST:
         BinarySearchTree<int, int>segon(primer);
         
+        // Comprovem que efectivament siguin iguals:
         if (primer.equals(segon))
             cout << "Cert\n\n";
         else 
             cout << "Fals\n\n";
         
-        primer.add(1, 1);
+        // Afegim un element amb key 1 i value 101 al primer arbre
+        primer.add(1, 101);
+        cout<<"Value de 1: ";
+        primer.valuesOf(1);
+        cout<<"\n";
+        
         
         // El primer arbre queda així:
         
