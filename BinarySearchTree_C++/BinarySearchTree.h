@@ -73,10 +73,9 @@ public:
     bool equals(const BinarySearchTree<K, V>& other) const;
     const std::vector<BinaryTreeNode<K, V>*>& getLeafs() const;
 
-    BinaryTreeNode<K, V>* find(const K& k) const;
-
 protected:
     BinaryTreeNode<K, V>* _root;
+    BinaryTreeNode<K, V>* find(const K& k) const;
 
 private:
     int _size;
