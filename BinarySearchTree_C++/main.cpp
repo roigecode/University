@@ -58,12 +58,12 @@ int main(int argc, char** argv) {
         primer.printNodesNivell(6); 
         cout<<"\n\n";
         
-        // Imprimim els valors:
-        for(auto& i : testKeys){
-            cout<<"Value de "<<i<<": ";
-            primer.valuesOf(i);
-            cout<<"\n";
-        }
+        // Test que imprimia els valors:
+//        for(auto& i : testKeys){
+//            cout<<"Value de "<<i<<": ";
+//            primer.valuesOf(i);
+//            cout<<"\n";
+//        }
         
         //Imprimim el primer BST de les tres formes:
         cout << "\n\nPreOrder primer: ";
@@ -87,9 +87,10 @@ int main(int argc, char** argv) {
         
         // Afegim un element amb key 1 i value 101 al primer arbre
         primer.add(1, 101);
-        cout<<"Value de 1: ";
-        primer.valuesOf(1);
-        cout<<"\n";
+        
+//        cout<<"Value de 1: ";
+//        primer.valuesOf(1);
+//        cout<<"\n";
         
         
         // El primer arbre queda així:

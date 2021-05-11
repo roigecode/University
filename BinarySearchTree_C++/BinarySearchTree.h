@@ -30,7 +30,7 @@ using namespace std;
  *  getRoot()           :=  O(1)
  *  add()               :=  O(MASTER)
  *  has()               :=  O(n)
- *  valuesOf()          :=  O(1) // AMB for per visualitzar testS: O(n)
+ *  valuesOf()          :=  O(1)       
  *  showKeysPreorder()  :=  O(MASTER)
  *  showKeysInorder()   :=  O(MASTER)
  *  showKeysPostorder() :=  O(MASTER)
@@ -229,8 +229,8 @@ const std::vector<V>& BinarySearchTree<K, V>::valuesOf(const K& k) const {
         throw out_of_range("No existeix cap element amb key: " + to_string(k) + ".\n");
     else{
         // Print per casos de prova - cal mirar cas array dins array per arrays tridimensionals:
-        for(const auto& i: aux->getValues())
-            cout<<i<<" ";
+        // for(const auto& i: aux->getValues())
+        //      cout<<i<<" ";
         return aux->getValues();
     }    
 }
