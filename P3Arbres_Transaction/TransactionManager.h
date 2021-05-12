@@ -111,7 +111,7 @@ float TransactionManager::feesInTotal() const {
         total_fees += preuf;
     }
      
-    cout<<"Total fees: "<<total_fees<<endl;
+    cout<<"\n>>Total fees: "<<total_fees<<endl;
     return total_fees;
 }
 
