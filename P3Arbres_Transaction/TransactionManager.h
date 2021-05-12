@@ -56,6 +56,7 @@ TransactionManager::~TransactionManager() {
 
 void TransactionManager::loadFromFile(string file_path) {
     this->file_path = file_path;
+    ifstream archiu(this->file_path);
 }
 
 void TransactionManager::showAll() const {
@@ -111,7 +112,7 @@ float TransactionManager::feesInTotal() const {
         total_fees += preuf;
     }
      
-    cout<<"\n>>Total fees: "<<total_fees<<endl;
+    cout<<"\n>> Total fees: "<<total_fees<<endl;
     return total_fees;
 }
 
