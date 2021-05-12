@@ -25,6 +25,8 @@ int main(int argc, char** argv) {
     cout<<"Obrim manager: "<<endl;
     TransactionManager tm = TransactionManager();
     tm.loadFromFile(casdeprova1);
+    tm.showAll();
+    tm.feesInTotal();
     
     return 0;
 }
