@@ -259,29 +259,27 @@ float TransactionManager::feesSinceTime(string date) const {
         return feesSinceTime_aux(date, this->_root);
 }
 
-float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* root) const {
+float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* node) const {
     float preu_t, p = 0;
-    vector<Transaction> t = root->getValues();
-
-    if (root->getKey() >= date) {
-
-        if (root->getLeft() != nullptr)
-            p += feesSinceTime_aux(date, root->getLeft());
-
-        if (root->getRight() != nullptr)
-            p += feesSinceTime_aux(date, root->getRight());
-
-//        for (int i = 0; i < t.size(); i++) {
-//
-//            preu_t = t[i].getQuantitatTransaccions();
-//
-//            if (preu_t > 0)
-//                p += preu_t * this->sellingFee;
-//            else
-//                p -= preu_t * this->buyingFee;
-//        }
+    
+    if (node->getKey() >= date) {
+        if (node->getLeft()!=nullptr) 
+            p += feesSinceTime_aux(date, node->getLeft());
+        
+        vector<Transaction> t = node->getValues();
+        
+        for (int i = 0; i < t.size(); i++) {
+            preu_t = t[i].getQuantitatTransaccions();
+            if (preu_t > 0)
+                p += preu_t * sellingFee;
+            else
+                p -= preu_t * buyingFee;
+        }
     }
     
+    if (node->getRight()!=nullptr) 
+        p += feesSinceTime_aux(date, node->getRight());
+   
     return p;
 }
 

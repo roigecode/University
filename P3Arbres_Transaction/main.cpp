@@ -31,6 +31,114 @@ void graficarMenu() {
     cout << "\n >> ";
 }
 
+void opcio_1(TransactionManager& tm) {
+    cout << "Introdueix la ruta del arxiu: " << endl;
+
+    //cin>>arxiu;
+    try {
+        chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+        tm.loadFromFile("transaction-cas-de-prova.txt" /*arxiu*/);
+        chrono::steady_clock::time_point end = chrono::steady_clock::now();
+        cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count() << " s." << endl;
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_2(TransactionManager& tm, int n_mostrar) {
+    cout << "Quantes transaccions vols mostrar?" << endl;
+    cout << " >> ";
+    cin>>n_mostrar;
+    try {
+        tm.showAll(n_mostrar);
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_3(TransactionManager& tm, int n_mostrar) {
+    cin.ignore();
+    cout << "Quantes transaccions vols mostrar?" << endl;
+    cout << " >> ";
+    cin>>n_mostrar;
+    try {
+        tm.showAllReverse(n_mostrar);
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_4(TransactionManager& tm) {
+    cin.ignore();
+    cout << "Mostrant transacció més antiga: " << endl;
+    try {
+        tm.showOldest();
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_5(TransactionManager& tm) {
+    cin.ignore();
+    cout << "Mostrant transacció més recent: " << endl;
+    try {
+        tm.showNewest();
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_6(TransactionManager& tm) {
+    cout << "Comissió total: " << endl;
+    try {
+        cout << " " << tm.feesInTotal() << endl;
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_7(TransactionManager& tm, string data_inici) {
+    cin.ignore();
+    // Solucionar error:
+    cout << "Introdueix la data d'inici: " << endl;
+    //"2020-01-01 14:52"
+    cout << " >> ";
+    getline(cin, data_inici);
+    try {
+        cout << tm.feesSinceTime(data_inici) << endl;
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_8(TransactionManager& tm, string data_inici, string data_final) {
+    cin.ignore();
+    pair <string, string> ival;
+
+    cout << "Introdueix la data d'inici: " << endl;
+    cout << " >> ";
+    getline(cin, data_inici);
+
+    cout << "Introdueix la data final: " << endl;
+    cout << " >> ";
+    getline(cin, data_final);
+
+    ival.first = data_inici;
+    ival.second = data_final;
+
+    try {
+        float p = tm.feesInTimeInterval(ival);
+        cout << p << endl;
+    } catch (const out_of_range& ex) {
+        cerr << ex.what() << endl;
+    }
+}
+
+void opcio_9(TransactionManager&) {
+    cin.ignore();
+    string queries;
+}
+
 int main(int argc, char** argv) {
     int opcio, n_mostrar;
     string arxiu, data_inici, data_final;
@@ -44,103 +152,38 @@ int main(int argc, char** argv) {
         // ERROR: <<BST buit>> al pasarlo por parámetro:
 
         switch (opcio) {
-            case 1:
-                cout << "Introdueix la ruta del arxiu: " << endl;
-
-                //cin>>arxiu;
-                try {
-                    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
-                    tm.loadFromFile("transaction-cas-de-prova.txt" /*arxiu*/);
-                    chrono::steady_clock::time_point end = chrono::steady_clock::now();
-                    cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count() << " ms." << endl;
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 1:opcio_1(tm);
                 break;
 
-            case 2:
-                cout << "Quantes transaccions vols mostrar?" << endl;
-                cout << " >> ";
-                cin>>n_mostrar;
-                try {
-                    tm.showAll(n_mostrar);
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 2:opcio_2(tm, n_mostrar);
                 break;
 
-            case 3: cout << "Quantes transaccions vols mostrar?" << endl;
-                cout << " >> ";
-                cin>>n_mostrar;
-                try {
-                    tm.showAllReverse(n_mostrar);
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 3: opcio_3(tm, n_mostrar);
                 break;
 
-            case 4:
-                cout << "Mostrant transacció més antiga: " << endl;
-                try {
-                    tm.showOldest();
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 4: opcio_4(tm);
                 break;
 
-            case 5:
-                cout << "Mostrant transacció més recent: " << endl;
-                try {
-                    tm.showNewest();
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 5: opcio_5(tm);
                 break;
 
-            case 6:
-                cout << "Comissió total: " << endl;
-                try {
-                    cout << " " << tm.feesInTotal() << endl;
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 6: opcio_6(tm);
                 break;
 
             case 7:
-                // Solucionar error:
-                cout << "Introdueix la data d'inici: " << endl;
-                //"2020-01-01 14:52"
-                cout << " >> ";
-                cin>>data_inici;
-                try {
-                    float fees_since_time = tm.feesSinceTime(data_inici);
-                    cout<<fees_since_time<<endl;
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+                opcio_7(tm, data_inici);
                 break;
 
-            case 8:
-                cout << "Introdueix la data d'inici: " << endl;
-                cout << " >> ";
-                cin>>data_inici;
-
-                cout << "Introdueix la data final: " << endl;
-                cout << " >> ";
-                cin>>data_final;
-                
-                //auto data = std::pair<string, string>(data_inici, data_final);
-                try {
-                    //cout << " " << tm.feesInTimeInterval(data) << endl;
-                } catch (const out_of_range& ex) {
-                    cerr << ex.what() << endl;
-                }
+            case 8: opcio_8(tm, data_inici, data_final);
                 break;
 
+            case 9: opcio_9(tm);
+                break;
 
-            case 9: break;
             case 10: break;
+
             default: cout << "Opcio incorrecte.\n" << endl;
+                cin.ignore();
                 break;
         }
     } while (opcio != 10);
