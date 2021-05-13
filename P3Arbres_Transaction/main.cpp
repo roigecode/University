@@ -29,42 +29,50 @@ void graficarMenu() {
     cout << "\n >> ";
 }
 
-void tractarOpcio(int opcio, TransactionManager tm) {
-    string arxiu;
-    
-    switch (opcio) {
-        case 1:
-            cout << "Introdueix la ruta del arxiu:";
-            cin>>arxiu;
-            try {
-                tm.loadFromFile(arxiu);
-            } catch (const out_of_range& ex) {
-               cerr<<ex.what()<<endl;;
-            }
-            break;
-            
-        case 2: break;
-        case 3: break;
-        case 4: break;
-        case 5: break;
-        case 6: break;
-        case 7: break;
-        case 8: break;
-        case 9: break;
-        case 10: break;
-        default: cout << "Opcio incorrecte.\n" << endl;
-            break;
-    }
-}
-
 int main(int argc, char** argv) {
-    int opcio;
+    int opcio, n_mostrar;
+    string arxiu;
     TransactionManager tm;
 
     do {
         graficarMenu();
         cin>>opcio;
-        tractarOpcio(opcio, tm);
+
+        // MIRAR PQ DA ERROR SI ESTO LO METO EN UN MÉTODO DE GESTION:
+        // ERROR: <<BST buit>> al pasarlo por parámetro:
+
+        switch (opcio) {
+            case 1:
+                cout << "Introdueix la ruta del arxiu: ";
+                //cin>>arxiu;
+                try {
+                    tm.loadFromFile("transaction-cas-de-prova.txt" /*arxiu*/);
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 2:
+               cout << "Quantes transaccions vols mostrar?"<<endl;
+               cout<< " >> ";
+                cin>>n_mostrar;
+                try {
+                    tm.showAll(n_mostrar);
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+            case 3: break;
+            case 4: break;
+            case 5: break;
+            case 6: break;
+            case 7: break;
+            case 8: break;
+            case 9: break;
+            case 10: break;
+            default: cout << "Opcio incorrecte.\n" << endl;
+                break;
+        }
     } while (opcio != 10);
 
     return 0;
