@@ -39,9 +39,9 @@ public:
     vector<Transaction> showAllReverse_aux(BinaryTreeNode<string, Transaction>* n, vector<Transaction> v) const;
     BinaryTreeNode<string, Transaction>* showOldest_aux(BinaryTreeNode<string, Transaction>* n) const;
     BinaryTreeNode<string, Transaction>* showNewest_aux(BinaryTreeNode<string, Transaction>* n) const;
-    float feesInTotal_aux(BinaryTreeNode<string, Transaction>* n, float p) const;
-    float feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* n, float p) const;
-    float feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n, float p) const;
+    float feesInTotal_aux(BinaryTreeNode<string, Transaction>* n) const;
+    float feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* root) const;
+    float feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n) const;
 
 private:
     float sellingFee;
@@ -97,13 +97,14 @@ void TransactionManager::showAll(int n) const {
     int n_aux;
     vector<Transaction> transactions;
     transactions = showAll_aux(this->_root, transactions);
-    int imprimides = transactions.size() + 1;
-    
+    int imprimides = 0;
+
     if (this->isEmpty())
         throw out_of_range("EXCEPCIÓ: L'estructura està buida.");
     else {
+        // Cas sortir 0: Contemplat perque el for NO iterarà:
         for (int i = 0; i < n; i++) {
-            if (imprimides < n)
+            if (imprimides >= transactions.size() or n > transactions.size())
                 throw out_of_range("EXCEPCIÓ: No hi ha tantes transactions.");
             else {
                 Transaction t = transactions[i];
@@ -113,16 +114,17 @@ void TransactionManager::showAll(int n) const {
                     cout << " >> ";
                     cin >> n_aux;
                     n += n_aux;
-                    imprimides--;
                 }
+                imprimides++;
             }
         }
     }
+
 }
 
 vector<Transaction> TransactionManager::showAll_aux(BinaryTreeNode<string, Transaction>* n, vector<Transaction> v) const {
 
-    // Investigar porque con n->hasLeft() / hasRight() da error;
+    // Investigar porque con n->getLeft()!=nullptr / getRight()!=nullptr da error;
 
     if (n->getLeft() != nullptr) {
         v = showAll_aux(n->getLeft(), v);
@@ -139,54 +141,64 @@ vector<Transaction> TransactionManager::showAll_aux(BinaryTreeNode<string, Trans
 
 void TransactionManager::showAllReverse(int n) const {
     int n_aux;
-    if (this->isEmpty()) {
+    vector<Transaction> transactions;
+    transactions = showAllReverse_aux(this->_root, transactions);
+    int imprimides = 0;
+
+    if (this->isEmpty())
         throw out_of_range("EXCEPCIÓ: L'estructura està buida.");
-    } else {
-        vector<Transaction> transactions;
-        transactions = showAllReverse_aux(this->_root, transactions);
+    else {
+        // Cas sortir 0: Contemplat perque el for NO iterarà:
         for (int i = 0; i < n; i++) {
-            if (i >= transactions.size())
-                throw out_of_range("EXCEPCIÓ: No hi han tantes transaccions.");
-            Transaction t = transactions[i];
-            t.printTransaction();
-            if (i == n - 1) {
-                cout << "Quantes transaccions més vols mostrar?";
-                cin >> n_aux;
-                n += n_aux;
+            if (imprimides >= transactions.size() or n > transactions.size())
+                throw out_of_range("EXCEPCIÓ: No hi ha tantes transactions.");
+            else {
+                Transaction t = transactions[i];
+                t.printTransaction();
+                if (i == n - 1) {
+                    cout << "Quantes transactions més vols mostrar?\n ";
+                    cout << " >> ";
+                    cin >> n_aux;
+                    n += n_aux;
+                }
+                imprimides++;
             }
         }
     }
+
 }
 
 vector<Transaction> TransactionManager::showAllReverse_aux(BinaryTreeNode<string, Transaction>* n, vector<Transaction> v) const {
-    if (n->hasRight()) {
+    // ÍDEM ERROR:
+    // Investigar porque con n->getLeft()!=nullptr / getRight()!=nullptr da error;
+
+    if (n->getRight() != nullptr) {
         v = showAllReverse_aux(n->getRight(), v);
     }
     vector<Transaction> t = n->getValues();
     for (int i = 0; i < t.size(); i++) {
         v.push_back(t[i]);
     }
-    if (n->hasLeft()) {
+    if (n->getLeft() != nullptr) {
         v = showAllReverse_aux(n->getLeft(), v);
     }
     return v;
 }
 
 void TransactionManager::showOldest() const {
-    if (this->isEmpty()) {
+    if (this->isEmpty())
         throw out_of_range("EXCEPCIÓ: L'estructura està buida");
-    } else {
+    else {
         BinaryTreeNode<string, Transaction> *node = showOldest_aux(this->_root);
         vector<Transaction> transactions = node->getValues();
-        for (int i = 0; i < transactions.size(); i++) {
-            Transaction t = transactions[i];
-            t.printTransaction();
-        }
+        Transaction t = transactions[0];
+        t.printTransaction();
     }
 }
 
 BinaryTreeNode<string, Transaction>* TransactionManager::showOldest_aux(BinaryTreeNode<string, Transaction>* n) const {
-    if (n->hasLeft()) {
+    // Per la propietat de ser BST tenim la més antiga a l'esquerra:
+    if (n->getLeft() != nullptr) {
         return showOldest_aux(n->getLeft());
     } else {
         return n;
@@ -199,15 +211,15 @@ void TransactionManager::showNewest() const {
     } else {
         BinaryTreeNode<string, Transaction> *node = showNewest_aux(this->_root);
         vector<Transaction> transactions = node->getValues();
-        for (int i = 0; i < transactions.size(); i++) {
-            Transaction t = transactions[i];
-            t.printTransaction();
-        }
+        Transaction t = transactions[0];
+        t.printTransaction();
+
     }
 }
 
 BinaryTreeNode<string, Transaction>* TransactionManager::showNewest_aux(BinaryTreeNode<string, Transaction>* n) const {
-    if (n->hasRight()) {
+    // Per la propietat de ser BST tenim la més nova a la dreta:
+    if (n->getRight() != nullptr) {
         return showNewest_aux(n->getRight());
     } else {
         return n;
@@ -218,13 +230,13 @@ float TransactionManager::feesInTotal() const {
     if (this->isEmpty())
         return 0;
     else
-        return feesInTotal_aux(this->_root, 0);
+        return feesInTotal_aux(this->_root);
 }
 
-float TransactionManager::feesInTotal_aux(BinaryTreeNode<string, Transaction>* n, float p) const {
-    float preu_t;
-    if (n->hasLeft()) {
-        p += feesInTotal_aux(n->getLeft(), 0);
+float TransactionManager::feesInTotal_aux(BinaryTreeNode<string, Transaction>* n) const {
+    float preu_t, p = 0;
+    if (n->getLeft() != nullptr) {
+        p += feesInTotal_aux(n->getLeft());
     }
     vector<Transaction> t = n->getValues();
     for (int i = 0; i < t.size(); i++) {
@@ -234,8 +246,8 @@ float TransactionManager::feesInTotal_aux(BinaryTreeNode<string, Transaction>* n
         else
             p -= preu_t * this->buyingFee;
     }
-    if (n->hasRight()) {
-        p += feesInTotal_aux(n->getRight(), 0);
+    if (n->getRight() != nullptr) {
+        p += feesInTotal_aux(n->getRight());
     }
     return p;
 }
@@ -244,27 +256,32 @@ float TransactionManager::feesSinceTime(string date) const {
     if (this->isEmpty())
         return 0;
     else
-        return feesSinceTime_aux(date, this->_root, 0);
+        return feesSinceTime_aux(date, this->_root);
 }
 
-float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* n, float p) const {
-    float preu_t;
-    if (n->getKey() >= date) {
-        if (n->hasLeft()) {
-            p += feesSinceTime_aux(date, n->getLeft(), 0);
-        }
-        vector<Transaction> t = n->getValues();
-        for (int i = 0; i < t.size(); i++) {
-            preu_t = t[i].getQuantitatTransaccions();
-            if (preu_t > 0)
-                p += preu_t * this->sellingFee;
-            else
-                p -= preu_t * this->buyingFee;
-        }
+float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* root) const {
+    float preu_t, p = 0;
+    vector<Transaction> t = root->getValues();
+
+    if (root->getKey() >= date) {
+
+        if (root->getLeft() != nullptr)
+            p += feesSinceTime_aux(date, root->getLeft());
+
+        if (root->getRight() != nullptr)
+            p += feesSinceTime_aux(date, root->getRight());
+
+//        for (int i = 0; i < t.size(); i++) {
+//
+//            preu_t = t[i].getQuantitatTransaccions();
+//
+//            if (preu_t > 0)
+//                p += preu_t * this->sellingFee;
+//            else
+//                p -= preu_t * this->buyingFee;
+//        }
     }
-    if (n->hasRight()) {
-        p += feesSinceTime_aux(date, n->getRight(), 0);
-    }
+    
     return p;
 }
 
@@ -274,22 +291,22 @@ float TransactionManager::feesInTimeInterval(pair<string, string> interval) cons
     if (this->isEmpty())
         return 0;
     else
-        return feesInTimeInterval_aux(interval, this->_root, 0);
+        return feesInTimeInterval_aux(interval, this->_root);
 }
 
-float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n, float p) const {
-    float preu_t;
+float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n) const {
+    float preu_t, p = 0;
     if (n->getKey() < interval.first) {
-        if (n->hasRight())
-            p += feesInTimeInterval_aux(interval, n->getRight(), 0);
+        if (n->getRight() != nullptr)
+            p += feesInTimeInterval_aux(interval, n->getRight());
     } else if (n->getKey() > interval.second) {
-        if (n->hasLeft())
-            p += feesInTimeInterval_aux(interval, n->getLeft(), 0);
+        if (n->getLeft() != nullptr)
+            p += feesInTimeInterval_aux(interval, n->getLeft());
     } else {
-        if (n->hasRight())
-            p += feesInTimeInterval_aux(interval, n->getRight(), 0);
-        if (n->hasLeft())
-            p += feesInTimeInterval_aux(interval, n->getLeft(), 0);
+        if (n->getRight() != nullptr)
+            p += feesInTimeInterval_aux(interval, n->getRight());
+        if (n->getLeft() != nullptr)
+            p += feesInTimeInterval_aux(interval, n->getLeft());
         vector<Transaction> t = n->getValues();
         for (int i = 0; i < t.size(); i++) {
             preu_t = t[i].getQuantitatTransaccions();
@@ -301,7 +318,6 @@ float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval, 
     }
     return p;
 }
-
 
 #endif /* TRANSACTIONMANAGER_H */
 

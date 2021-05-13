@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <chrono>
+
 #include "BinarySearchTree.h"
 #include "Transaction.h"
 #include "TransactionManager.h"
@@ -31,7 +33,7 @@ void graficarMenu() {
 
 int main(int argc, char** argv) {
     int opcio, n_mostrar;
-    string arxiu;
+    string arxiu, data_inici, data_final;
     TransactionManager tm;
 
     do {
@@ -43,18 +45,22 @@ int main(int argc, char** argv) {
 
         switch (opcio) {
             case 1:
-                cout << "Introdueix la ruta del arxiu: ";
+                cout << "Introdueix la ruta del arxiu: " << endl;
+
                 //cin>>arxiu;
                 try {
+                    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
                     tm.loadFromFile("transaction-cas-de-prova.txt" /*arxiu*/);
+                    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+                    cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count() << " ms." << endl;
                 } catch (const out_of_range& ex) {
                     cerr << ex.what() << endl;
                 }
                 break;
 
             case 2:
-               cout << "Quantes transaccions vols mostrar?"<<endl;
-               cout<< " >> ";
+                cout << "Quantes transaccions vols mostrar?" << endl;
+                cout << " >> ";
                 cin>>n_mostrar;
                 try {
                     tm.showAll(n_mostrar);
@@ -62,12 +68,76 @@ int main(int argc, char** argv) {
                     cerr << ex.what() << endl;
                 }
                 break;
-            case 3: break;
-            case 4: break;
-            case 5: break;
-            case 6: break;
-            case 7: break;
-            case 8: break;
+
+            case 3: cout << "Quantes transaccions vols mostrar?" << endl;
+                cout << " >> ";
+                cin>>n_mostrar;
+                try {
+                    tm.showAllReverse(n_mostrar);
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Mostrant transacció més antiga: " << endl;
+                try {
+                    tm.showOldest();
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 5:
+                cout << "Mostrant transacció més recent: " << endl;
+                try {
+                    tm.showNewest();
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 6:
+                cout << "Comissió total: " << endl;
+                try {
+                    cout << " " << tm.feesInTotal() << endl;
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 7:
+                // Solucionar error:
+                cout << "Introdueix la data d'inici: " << endl;
+                //"2020-01-01 14:52"
+                cout << " >> ";
+                cin>>data_inici;
+                try {
+                    float fees_since_time = tm.feesSinceTime(data_inici);
+                    cout<<fees_since_time<<endl;
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+            case 8:
+                cout << "Introdueix la data d'inici: " << endl;
+                cout << " >> ";
+                cin>>data_inici;
+
+                cout << "Introdueix la data final: " << endl;
+                cout << " >> ";
+                cin>>data_final;
+                
+                //auto data = std::pair<string, string>(data_inici, data_final);
+                try {
+                    //cout << " " << tm.feesInTimeInterval(data) << endl;
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                }
+                break;
+
+
             case 9: break;
             case 10: break;
             default: cout << "Opcio incorrecte.\n" << endl;
