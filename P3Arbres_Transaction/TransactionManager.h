@@ -95,24 +95,25 @@ void TransactionManager::loadFromFile(string file_path) {
 
 void TransactionManager::showAll(int n) const {
     int n_aux;
-    if (this->isEmpty()) {
+    vector<Transaction> transactions;
+    transactions = showAll_aux(this->_root, transactions);
+    int imprimides = transactions.size() + 1;
+    
+    if (this->isEmpty())
         throw out_of_range("EXCEPCIÓ: L'estructura està buida.");
-    } else {
-        vector<Transaction> transactions;
-        transactions = showAll_aux(this->_root, transactions);
-        
-        // Mala logica porque solo lanza la excepcion al final, MIRAR:
+    else {
         for (int i = 0; i < n; i++) {
-            if (i >= transactions.size())
-                throw out_of_range("EXCEPCIÓ: No hi ha tantes transactions.");  
+            if (imprimides < n)
+                throw out_of_range("EXCEPCIÓ: No hi ha tantes transactions.");
             else {
                 Transaction t = transactions[i];
                 t.printTransaction();
                 if (i == n - 1) {
                     cout << "Quantes transactions més vols mostrar?\n ";
-                    cout<<" >> ";
+                    cout << " >> ";
                     cin >> n_aux;
                     n += n_aux;
+                    imprimides--;
                 }
             }
         }
