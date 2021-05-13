@@ -66,6 +66,7 @@ void TransactionManager::loadFromFile(string file_path) {
     string instant;
     int id;
     float quantitat;
+    
     while (!arxiu.eof()) {
         getline(arxiu, linea);
         if (nombre_linea == 0 && linea.compare("") == 0)
@@ -90,6 +91,7 @@ void TransactionManager::loadFromFile(string file_path) {
         }
         nombre_linea++;
     }
+    
     arxiu.close();
 }
 
@@ -256,13 +258,14 @@ float TransactionManager::feesSinceTime(string date) const {
     if (this->isEmpty())
         return 0;
     else
-        return feesSinceTime_aux(date, this->_root);
+        return feesSinceTime_aux(date, _root);
 }
 
 float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* node) const {
     float preu_t, p = 0;
     
     if (node->getKey() >= date) {
+        
         if (node->getLeft()!=nullptr) 
             p += feesSinceTime_aux(date, node->getLeft());
         
@@ -292,8 +295,10 @@ float TransactionManager::feesInTimeInterval(pair<string, string> interval) cons
         return feesInTimeInterval_aux(interval, this->_root);
 }
 
-float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n) const {
+float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval,
+        BinaryTreeNode<string, Transaction>* n) const {
     float preu_t, p = 0;
+    
     if (n->getKey() < interval.first) {
         if (n->getRight() != nullptr)
             p += feesInTimeInterval_aux(interval, n->getRight());

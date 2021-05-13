@@ -89,49 +89,30 @@ void opcio_5(TransactionManager& tm) {
 }
 
 void opcio_6(TransactionManager& tm) {
-    cout << "Comissió total: " << endl;
-    try {
-        cout << " " << tm.feesInTotal() << endl;
-    } catch (const out_of_range& ex) {
-        cerr << ex.what() << endl;
-    }
+    cout << "Comissió total: " << tm.feesInTotal() << endl;
 }
 
-void opcio_7(TransactionManager& tm, string data_inici) {
+void opcio_7(TransactionManager& tm) {
     cin.ignore();
-    // Solucionar error:
-    cout << "Introdueix la data d'inici: " << endl;
-    //"2020-01-01 14:52"
-    cout << " >> ";
-    getline(cin, data_inici);
-    try {
-        cout << tm.feesSinceTime(data_inici) << endl;
-    } catch (const out_of_range& ex) {
-        cerr << ex.what() << endl;
-    }
+    string date;
+    cout << "Introdueix una data (aaaa-mm-dd hh:mm): ";
+    getline(cin, date);
+    cout << "Comisions desde " << date << ": " << tm.feesSinceTime(date) << endl;
 }
 
-void opcio_8(TransactionManager& tm, string data_inici, string data_final) {
+void opcio_8(TransactionManager& tm, pair <string, string> ival) {
     cin.ignore();
-    pair <string, string> ival;
 
     cout << "Introdueix la data d'inici: " << endl;
     cout << " >> ";
-    getline(cin, data_inici);
+    getline(cin, ival.first);
 
     cout << "Introdueix la data final: " << endl;
     cout << " >> ";
-    getline(cin, data_final);
+    getline(cin, ival.second);
 
-    ival.first = data_inici;
-    ival.second = data_final;
-
-    try {
-        float p = tm.feesInTimeInterval(ival);
-        cout << p << endl;
-    } catch (const out_of_range& ex) {
-        cerr << ex.what() << endl;
-    }
+    cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
+            << tm.feesInTimeInterval(ival) << endl;
 }
 
 void opcio_9(TransactionManager&) {
@@ -141,15 +122,13 @@ void opcio_9(TransactionManager&) {
 
 int main(int argc, char** argv) {
     int opcio, n_mostrar;
-    string arxiu, data_inici, data_final;
+    string data_inici, data_final;
     TransactionManager tm;
+    pair<string, string> ival;
 
     do {
         graficarMenu();
         cin>>opcio;
-
-        // MIRAR PQ DA ERROR SI ESTO LO METO EN UN MÉTODO DE GESTION:
-        // ERROR: <<BST buit>> al pasarlo por parámetro:
 
         switch (opcio) {
             case 1:opcio_1(tm);
@@ -170,11 +149,15 @@ int main(int argc, char** argv) {
             case 6: opcio_6(tm);
                 break;
 
-            case 7:
-                opcio_7(tm, data_inici);
+            case 7: opcio_7(tm);
                 break;
 
-            case 8: opcio_8(tm, data_inici, data_final);
+            case 8: opcio_8(tm,ival);
+//
+//                ival.first = "2020-01-01 13:47";
+//                ival.second = "2020-01-02 10:07";
+//                cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
+//                        << tm.feesInTimeInterval(ival) << endl;
                 break;
 
             case 9: opcio_9(tm);
