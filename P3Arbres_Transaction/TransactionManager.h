@@ -42,6 +42,7 @@ public:
     float feesInTotal_aux(BinaryTreeNode<string, Transaction>* n) const;
     float feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* root) const;
     float feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n) const;
+    float calculaComisio(BinaryTreeNode<string, Transaction>* node) const;
 
 private:
     float sellingFee;
@@ -66,7 +67,7 @@ void TransactionManager::loadFromFile(string file_path) {
     string instant;
     int id;
     float quantitat;
-    
+
     while (!arxiu.eof()) {
         getline(arxiu, linea);
         if (nombre_linea == 0 && linea.compare("") == 0)
@@ -91,7 +92,7 @@ void TransactionManager::loadFromFile(string file_path) {
         }
         nombre_linea++;
     }
-    
+
     arxiu.close();
 }
 
@@ -263,14 +264,14 @@ float TransactionManager::feesSinceTime(string date) const {
 
 float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, Transaction>* node) const {
     float preu_t, p = 0;
-    
+
     if (node->getKey() >= date) {
-        
-        if (node->getLeft()!=nullptr) 
+
+        if (node->hasLeft())
             p += feesSinceTime_aux(date, node->getLeft());
-        
+
         vector<Transaction> t = node->getValues();
-        
+
         for (int i = 0; i < t.size(); i++) {
             preu_t = t[i].getQuantitatTransaccions();
             if (preu_t > 0)
@@ -279,49 +280,92 @@ float TransactionManager::feesSinceTime_aux(string date, BinaryTreeNode<string, 
                 p -= preu_t * buyingFee;
         }
     }
-    
-    if (node->getRight()!=nullptr) 
+
+    if (node->getRight() != nullptr)
         p += feesSinceTime_aux(date, node->getRight());
-   
+
     return p;
 }
 
 float TransactionManager::feesInTimeInterval(pair<string, string> interval) const {
+
     if (interval.first > interval.second)
-        throw out_of_range("EXCEPCIÓ: L'interval no té sentit");
+        throw out_of_range("L'interval no té sentit");
     if (this->isEmpty())
         return 0;
+    
+    else if (interval.first == interval.second){
+        BinaryTreeNode<string,Transaction>* node = find(interval.first);
+        return calculaComisio(node);
+    }
     else
-        return feesInTimeInterval_aux(interval, this->_root);
+        return feesInTimeInterval_aux(interval, _root);
+
 }
 
-float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval,
-        BinaryTreeNode<string, Transaction>* n) const {
+float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval, BinaryTreeNode<string, Transaction>* n) const {
     float preu_t, p = 0;
-    
+
     if (n->getKey() < interval.first) {
-        if (n->getRight() != nullptr)
+        if (n->hasRight())
             p += feesInTimeInterval_aux(interval, n->getRight());
+
     } else if (n->getKey() > interval.second) {
-        if (n->getLeft() != nullptr)
+        if (n->hasLeft())
             p += feesInTimeInterval_aux(interval, n->getLeft());
+
     } else {
-        if (n->getRight() != nullptr)
+
+        if (n->hasRight()) {
             p += feesInTimeInterval_aux(interval, n->getRight());
-        if (n->getLeft() != nullptr)
+        }
+
+        if (n->hasLeft()) {
             p += feesInTimeInterval_aux(interval, n->getLeft());
+        }
+
         vector<Transaction> t = n->getValues();
-        
-        for (int i = 0; i < t.size(); i++) {
+
+        for (unsigned i = 0; i < t.size(); i++) {
             preu_t = t[i].getQuantitatTransaccions();
             if (preu_t > 0)
-                p += preu_t * this->sellingFee;
+                p += preu_t * sellingFee;
             else
-                p -= preu_t * this->buyingFee;
+                p -= preu_t * buyingFee;
         }
     }
+
+    //cout<<"P retorna: "<<p<<endl;
     return p;
 }
+
+float TransactionManager::calculaComisio(BinaryTreeNode<string, Transaction>* node) const{
+    
+    cout<<"Entro a calcula comissio"<<endl;
+    
+    float comissio = 0;
+    
+    if(node == nullptr){
+        cout<<"Node null";
+        return 0;
+    }
+    
+    for(Transaction t : node->getValues()){
+        if(t.getQuantitatTransaccions() < 0){
+            comissio += this->buyingFee * abs(t.getQuantitatTransaccions());
+            cout<<"Com +: "<<comissio;
+        }
+        else{
+            comissio += this->sellingFee * abs(t.getQuantitatTransaccions());
+            cout<<"Com -:"<<comissio;
+        }
+    }
+    cout<<"Comissio: "<<comissio;
+    return comissio;
+    
+                
+}
+
 
 #endif /* TRANSACTIONMANAGER_H */
 

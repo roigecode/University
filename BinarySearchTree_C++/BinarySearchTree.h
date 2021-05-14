@@ -72,6 +72,7 @@ public:
 
     bool equals(const BinarySearchTree<K, V>& other) const;
     const std::vector<BinaryTreeNode<K, V>*>& getLeafs() const;
+    BinaryTreeNode<K, V>* findTestPublic(const K& k) const;
 
 protected:
     BinaryTreeNode<K, V>* _root;
@@ -332,6 +333,12 @@ const std::vector<BinaryTreeNode<K, V>*>& BinarySearchTree<K, V>::getLeafsAux(Bi
         getLeafsAux(n->getRight());
 
     return leafs;
+}
+
+
+template <class K, class V>
+BinaryTreeNode<K, V>* BinarySearchTree<K, V>::findTestPublic(const K& k) const {
+    return find(k);
 }
 
 template <class K, class V>

@@ -174,12 +174,12 @@ bool BinaryTreeNode<K,V>::isRoot()const {
 
 template <class K, class V>
 bool BinaryTreeNode<K,V>::hasLeft() const {
-    return this->_left == nullptr;
+    return _left != nullptr;
 }
 
 template <class K, class V>
 bool BinaryTreeNode<K,V>::hasRight() const {
-    return this->_right == nullptr;
+    return _right != nullptr;
 }
 
 template <class K, class V>

@@ -10,26 +10,13 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <fstream>
 
 #include "BinarySearchTree.h"
 #include "Transaction.h"
 #include "TransactionManager.h"
 
 using namespace std;
-
-void graficarMenu() {
-    const string opcions[10] = {"1. Introduir fitxer", "2. Transaccions ordenades",
-        "3. Transaccions a´l'inrevés", "4. Transaccions del primer instant",
-        "5. Transaccions del darrer instant", "6. Comisió total",
-        "7. Comisió a partir d'una data", "8. Comisió entre dues dates",
-        "9. Balanç de transaccions a queries.txt", "10. Sortir"};
-
-    cout << "----------------------------------------" << endl;
-    for (auto& opcio : opcions)
-        cout << opcio << endl;
-    cout << "----------------------------------------" << endl;
-    cout << "\n >> ";
-}
 
 void opcio_1(TransactionManager& tm) {
     cout << "Introdueix la ruta del arxiu: " << endl;
@@ -47,8 +34,8 @@ void opcio_1(TransactionManager& tm) {
 }
 
 void opcio_2(TransactionManager& tm, int n_mostrar) {
-    cout << "Quantes transaccions vols mostrar?" << endl;
-    cout << " >> ";
+    cin.ignore();
+    cout << "Quantes transaccions vols mostrar? \n >> ";
     cin>>n_mostrar;
     try {
         tm.showAll(n_mostrar);
@@ -59,8 +46,7 @@ void opcio_2(TransactionManager& tm, int n_mostrar) {
 
 void opcio_3(TransactionManager& tm, int n_mostrar) {
     cin.ignore();
-    cout << "Quantes transaccions vols mostrar?" << endl;
-    cout << " >> ";
+    cout << "Quantes transaccions vols mostrar? \n >> ";
     cin>>n_mostrar;
     try {
         tm.showAllReverse(n_mostrar);
@@ -93,31 +79,38 @@ void opcio_6(TransactionManager& tm) {
     cout << "Comissió total: " << tm.feesInTotal() << endl;
 }
 
-void opcio_7(TransactionManager& tm) {
+string opcio_7() {
     cin.ignore();
     string date;
-    cout << "Introdueix una data (aaaa-mm-dd hh:mm): ";
+    cout << "Introdueix una data (aaaa-mm-dd hh:mm):\n >> ";
+    cin.ignore();
     getline(cin, date);
-    cout << "Comisions desde " << date << ": " << tm.feesSinceTime(date) << endl;
+    cout << "Comissió desde: " << date << " és de: \n";
+    return date;
 }
 
-void opcio_8(TransactionManager& tm, pair <string, string> ival) {
+pair<string, string> opcio_8() {
+    string d1;
+    string d2;
+
     cin.ignore();
 
-    cout << "Introdueix la data d'inici: " << endl;
-    cout << " >> ";
-    getline(cin, ival.first);
+    cout << "Introdueix la data d'inici (aaaa-mm-dd hh:mm):\n >> ";
+    cin.ignore();
+    getline(cin, d1);
 
-    cout << "Introdueix la data final: " << endl;
-    cout << " >> ";
-    getline(cin, ival.second);
+    cout << "Introdueix la data final (aaaa-mm-dd hh:mm): \n >> ";
+    cin.ignore();
+    getline(cin, d2);
 
-    cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
-            << tm.feesInTimeInterval(ival) << endl;
+    cout << "Comissions entre " << d1 << " i " << d2 << " :\n ";
+    pair<string, string> ival = pair<string, string>(d1, d2);
+    return ival;
 }
 
-float opcio_9(TransactionManager& tm) {
-    
+float opcio_9(TransactionManager &tm) {
+
+    cin.ignore();
     float c;
     string path = "queries.txt"; // Enunciat
     string data;
@@ -125,24 +118,67 @@ float opcio_9(TransactionManager& tm) {
     fitxer.open(path);
     
     chrono::steady_clock::time_point begin = chrono::steady_clock::now();
-    while(getline(fitxer, data)){
-        pair<string, string> ival = pair<string,string>(data,data);
+
+    while (getline(fitxer, data)) {
+        pair<string, string> ival;
+        ival.first = data;
+        ival.second = data;
         c += tm.feesInTimeInterval(ival);
     }
+
+    cout << "Comissions de l'arxiu: " << c <<"\n";
+
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
-    
+
     cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
-                << " s." << endl;
+            << " s." << endl;
+
     fitxer.close();
     return c;
+
+
+    //    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+    //
+    //    ifstream fitxer("queries.txt");
+    //    string date;
+    //
+    //    float com = 0;
+    //    while (!fitxer.eof()) {
+    //
+    //        getline(fitxer, date);
+    //        pair<string, string> i;
+    //        i.first = date;
+    //        i.second = date;
+    //        com += tm.feesInTimeInterval(i);
+    //    }
+    //
+    //    fitxer.close();
+    //
+    //    cout << "Comissions de l'arxiu: " << com << endl;
+    //
+    //    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+    //    cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count() << " s." << endl;
+
+}
+
+void graficarMenu() {
+    const string opcions[10] = {"1. Introduir fitxer", "2. Transaccions ordenades",
+        "3. Transaccions a´l'inrevés", "4. Transaccions del primer instant",
+        "5. Transaccions del darrer instant", "6. Comisió total",
+        "7. Comisió a partir d'una data", "8. Comisió entre dues dates",
+        "9. Balanç de transaccions a queries.txt", "10. Sortir"};
+
+    cout << "----------------------------------------" << endl;
+    for (auto& opcio : opcions)
+        cout << opcio << endl;
+    cout << "----------------------------------------" << endl;
+    cout << "\n >> ";
 }
 
 int main(int argc, char** argv) {
     int opcio, n_mostrar;
-    string data_inici, data_final;
     TransactionManager tm;
-    pair<string, string> ival;
-
+    
     do {
         graficarMenu();
         cin>>opcio;
@@ -166,19 +202,16 @@ int main(int argc, char** argv) {
             case 6: opcio_6(tm);
                 break;
 
-            case 7: opcio_7(tm);
-                cout << "Correcto: " << tm.feesSinceTime("2020-01-01 14:52") << endl;
+            case 7: cout << tm.feesSinceTime(opcio_7()) << endl;
                 break;
 
-            case 8: //opcio_8(tm,ival);
+            case 8: try {
+                    cout << tm.feesInTimeInterval(opcio_8()) << endl;
+                } catch (const out_of_range& ex) {
+                    cerr << ex.what() << endl;
+                } break;
 
-                ival.first = "2020-01-01 13:47";
-                ival.second = "2020-01-02 10:07";
-                cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
-                        << tm.feesInTimeInterval(ival) << endl;
-                break;
-
-            case 9: opcio_9(tm);
+            case 9: cout<< opcio_9(tm)<<endl;
                 break;
 
             case 10: break;

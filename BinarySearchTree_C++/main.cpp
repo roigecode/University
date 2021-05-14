@@ -29,6 +29,13 @@ int main(int argc, char** argv) {
         for(unsigned i=0; i< sizeof(testKeys)/4 ; i++){
             primer.add(testKeys[i],testValues[i]);
         }
+        
+        
+        cout<<"Finding 99"<<endl;
+        
+        if(primer.findTestPublic(99)->hasLeft()){
+            cout<<"Té esquerra i és: "<<primer.findTestPublic(99)->getLeft()->getKey()<<endl;
+        }
           
         // El primer arbre (i la copia que en farem) queda així:
         

@@ -72,10 +72,12 @@ public:
 
     bool equals(const BinarySearchTree<K, V>& other) const;
     const std::vector<BinaryTreeNode<K, V>*>& getLeafs() const; 
+   
 
 protected:
     BinaryTreeNode<K, V>* _root;
     BinaryTreeNode<K, V>* find(const K& k) const;
+   
 
 private:
     int _size;
@@ -344,10 +346,10 @@ BinaryTreeNode<K, V>* BinarySearchTree<K, V>::_find(const K& k, BinaryTreeNode<K
     // Si _root es nullptr o bé la clau del root és la que busquem, retornem el root; 
     if (node == nullptr || node->getKey() == k)
         return node;
-        // Si key és menor que la key del node, mirem recursivament els seus fills esquerra;
+    // Si key és menor que la key del node, mirem recursivament els seus fills esquerra;
     else if (k < node->getKey())
         return _find(k, node->getLeft());
-        // Si key es major que la key del node, mirem recursivament els seus fills dreta;
+    // Si key es major que la key del node, mirem recursivament els seus fills dreta;
     else
         return _find(k, node->getRight());
 }
