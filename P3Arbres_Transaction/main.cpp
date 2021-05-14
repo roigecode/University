@@ -37,9 +37,10 @@ void opcio_1(TransactionManager& tm) {
     //cin>>arxiu;
     try {
         chrono::steady_clock::time_point begin = chrono::steady_clock::now();
-        tm.loadFromFile("transaction-cas-de-prova.txt" /*arxiu*/);
+        tm.loadFromFile("transactions-cas-de-prova.txt" /*arxiu*/);
         chrono::steady_clock::time_point end = chrono::steady_clock::now();
-        cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count() << " s." << endl;
+        cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
+                << " s." << endl;
     } catch (const out_of_range& ex) {
         cerr << ex.what() << endl;
     }
@@ -115,9 +116,25 @@ void opcio_8(TransactionManager& tm, pair <string, string> ival) {
             << tm.feesInTimeInterval(ival) << endl;
 }
 
-void opcio_9(TransactionManager&) {
-    cin.ignore();
-    string queries;
+float opcio_9(TransactionManager& tm) {
+    
+    float c;
+    string path = "queries.txt"; // Enunciat
+    string data;
+    ifstream fitxer;
+    fitxer.open(path);
+    
+    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+    while(getline(fitxer, data)){
+        pair<string, string> ival = pair<string,string>(data,data);
+        c += tm.feesInTimeInterval(ival);
+    }
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+    
+    cout << "Temps transcorregut: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
+                << " s." << endl;
+    fitxer.close();
+    return c;
 }
 
 int main(int argc, char** argv) {
@@ -150,14 +167,15 @@ int main(int argc, char** argv) {
                 break;
 
             case 7: opcio_7(tm);
+                cout << "Correcto: " << tm.feesSinceTime("2020-01-01 14:52") << endl;
                 break;
 
-            case 8: opcio_8(tm,ival);
-//
-//                ival.first = "2020-01-01 13:47";
-//                ival.second = "2020-01-02 10:07";
-//                cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
-//                        << tm.feesInTimeInterval(ival) << endl;
+            case 8: //opcio_8(tm,ival);
+
+                ival.first = "2020-01-01 13:47";
+                ival.second = "2020-01-02 10:07";
+                cout << "Comissions entre " << ival.first << " i " << ival.second << " : "
+                        << tm.feesInTimeInterval(ival) << endl;
                 break;
 
             case 9: opcio_9(tm);

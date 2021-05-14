@@ -12,7 +12,8 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>transaction-cas-de-prova.txt</itemPath>
+      <itemPath>transactions-cas-de-prova.txt</itemPath>
+      <itemPath>transactions-large.txt</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -57,7 +58,9 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="transaction-cas-de-prova.txt" ex="false" tool="3" flavor2="0">
+      <item path="transactions-cas-de-prova.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="transactions-large.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -93,7 +96,9 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="transaction-cas-de-prova.txt" ex="false" tool="3" flavor2="0">
+      <item path="transactions-cas-de-prova.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="transactions-large.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

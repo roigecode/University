@@ -311,6 +311,7 @@ float TransactionManager::feesInTimeInterval_aux(pair<string, string> interval,
         if (n->getLeft() != nullptr)
             p += feesInTimeInterval_aux(interval, n->getLeft());
         vector<Transaction> t = n->getValues();
+        
         for (int i = 0; i < t.size(); i++) {
             preu_t = t[i].getQuantitatTransaccions();
             if (preu_t > 0)
