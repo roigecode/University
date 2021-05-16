@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
             ex1.add(testKeys_[i], testValues[i]);
         }
 
-        ex1.showKeysInorder();
+        // ex1.showKeysInorder();
 
 
         // TEST RIGHT ROTATION - Cas (1):
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
             RR.add(testKeys[i], testValues[i]);
         }
 
-        RR.showKeysInorder();
+        // RR.showKeysInorder();
 
 
 
@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
             LR.add(testKeys[i], testValues[i]);
         }
 
-        LR.showKeysInorder();
+        //LR.showKeysInorder();
 
 
         // TEST LR - Cas (3):
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
         case3.add(6, value_unitary_test);
         case3.add(2, value_unitary_test);
         case3.add(5, value_unitary_test);
-        case3.showKeysInorder();
+        //case3.showKeysInorder();
 
 
         // TEST RL - Cas(4):
@@ -66,7 +66,23 @@ int main(int argc, char** argv) {
         case4.add(11, value_unitary_test);
         case4.add(13, value_unitary_test);
         case4.add(12, value_unitary_test);
+        //case4.showKeysInorder();
+        
+        cout<<"\n+-------------------------+";
+        cout<<"\n|     INORDER OUTPUTS     |";
+        cout<<"\n+-------------------------+";
+        cout<<"\n|EX 1: ";
+        ex1.showKeysInorder();
+        cout<<"|\n|RR: ";
+        RR.showKeysInorder();
+        cout<<"   |\n|LR: ";
+        LR.showKeysInorder();
+        cout<<"   |\n|Case 3: ";
+        case3.showKeysInorder();
+        cout<<"\t\t  |\n|Case 4: ";
         case4.showKeysInorder();
+        cout<<"\t  |\n+-------------------------+";
+        cout<<"\n\n";
 
     } catch (out_of_range& e) {
         cout << "EXCEPCIÓ: " << e.what() << endl;
