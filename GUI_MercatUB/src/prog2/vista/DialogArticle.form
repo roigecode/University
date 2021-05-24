@@ -81,7 +81,7 @@
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="inpNom" pref="22" max="32767" attributes="0"/>
+                  <Component id="inpNom" max="32767" attributes="0"/>
                   <Component id="jTextField3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Hack Nerd Font" size="12" style="0"/>
+          <Font name="Calibri" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Urgent"/>
       </Properties>
@@ -153,7 +153,7 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Hack Nerd Font" size="12" style="0"/>
+          <Font name="Calibri" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="33" type="rgb"/>

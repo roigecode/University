@@ -89,7 +89,7 @@ public class DialogClient extends javax.swing.JDialog {
         txtAdreca.setViewportView(jTextPane1);
 
         btnAfegirClient.setBackground(new java.awt.Color(0, 0, 0));
-        btnAfegirClient.setFont(new java.awt.Font("Hack NF", 0, 12)); // NOI18N
+        btnAfegirClient.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnAfegirClient.setForeground(new java.awt.Color(0, 255, 255));
         btnAfegirClient.setText("Afegir Client");
         btnAfegirClient.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

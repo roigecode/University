@@ -101,7 +101,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         btnUrgent.setText("Urgent");
 
         afegirComanda.setBackground(new java.awt.Color(51, 51, 51));
-        afegirComanda.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        afegirComanda.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         afegirComanda.setForeground(new java.awt.Color(0, 204, 255));
         afegirComanda.setText("Afegeix Comanda");
         afegirComanda.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +184,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
                 .addComponent(btnAfegeixComanda)
                 .addGap(18, 18, 18)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();

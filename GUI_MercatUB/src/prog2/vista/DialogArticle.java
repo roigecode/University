@@ -59,11 +59,11 @@ public class DialogArticle extends javax.swing.JDialog {
         jTextField5.setText("Temps d'enviament");
 
         inpUrgent.setBackground(new java.awt.Color(255, 255, 255));
-        inpUrgent.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        inpUrgent.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         inpUrgent.setText("Urgent");
 
         btnAfegirArticle.setBackground(new java.awt.Color(51, 51, 51));
-        btnAfegirArticle.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        btnAfegirArticle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnAfegirArticle.setForeground(new java.awt.Color(51, 204, 255));
         btnAfegirArticle.setText("Afegir Article");
         btnAfegirArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class DialogArticle extends javax.swing.JDialog {
                     .addComponent(inpId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inpNom, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(inpNom)
                     .addComponent(jTextField3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
