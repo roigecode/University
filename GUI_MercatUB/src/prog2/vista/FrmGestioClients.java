@@ -38,6 +38,9 @@ public class FrmGestioClients extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestió Clients");
 
+        btnVisualitzar.setBackground(new java.awt.Color(0, 0, 0));
+        btnVisualitzar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnVisualitzar.setForeground(new java.awt.Color(0, 255, 255));
         btnVisualitzar.setText("Visualitzar Clients");
         btnVisualitzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +48,9 @@ public class FrmGestioClients extends javax.swing.JFrame {
             }
         });
 
+        btnAfegirClient.setBackground(new java.awt.Color(0, 0, 0));
+        btnAfegirClient.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnAfegirClient.setForeground(new java.awt.Color(102, 255, 0));
         btnAfegirClient.setText("Afegir Client");
         btnAfegirClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +81,7 @@ public class FrmGestioClients extends javax.swing.JFrame {
                 .addComponent(btnAfegirClient)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();

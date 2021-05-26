@@ -7,6 +7,7 @@ package prog2.vista;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,9 +63,9 @@ public class DialogArticle extends javax.swing.JDialog {
         inpUrgent.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         inpUrgent.setText("Urgent");
 
-        btnAfegirArticle.setBackground(new java.awt.Color(51, 51, 51));
+        btnAfegirArticle.setBackground(new java.awt.Color(0, 0, 0));
         btnAfegirArticle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        btnAfegirArticle.setForeground(new java.awt.Color(51, 204, 255));
+        btnAfegirArticle.setForeground(new java.awt.Color(0, 255, 255));
         btnAfegirArticle.setText("Afegir Article");
         btnAfegirArticle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,11 +152,18 @@ public class DialogArticle extends javax.swing.JDialog {
             float preu = Float.parseFloat(inpPreu1.getText());
             int temp = Integer.parseInt(inpEnv.getText());
             boolean urgent = inpUrgent.isSelected();
+
+            
+            if(id.length() == 0 || nom.length() == 0)
+                throw new RuntimeException();
             
             AppMercatUB.controlador.afegirArticle(id, nom, preu, temp, urgent);
+            JOptionPane.showMessageDialog(null, "Article afegit amb èxit!");
         } catch (MercatException ex) {
-            Logger.getLogger(DialogArticle.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (RuntimeException exc) {
+            JOptionPane.showMessageDialog(null, "Has deixat algún camp buit.");
+        } finally {
             this.dispose();
         }
     }//GEN-LAST:event_btnAfegirArticleActionPerformed

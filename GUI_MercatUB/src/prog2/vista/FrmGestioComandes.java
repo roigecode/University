@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,6 +61,9 @@ public class FrmGestioComandes extends javax.swing.JFrame {
             }
         });
 
+        btnAfegeixComanda.setBackground(new java.awt.Color(0, 0, 0));
+        btnAfegeixComanda.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btnAfegeixComanda.setForeground(new java.awt.Color(0, 255, 0));
         btnAfegeixComanda.setText("Afegeix Comanda");
         btnAfegeixComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +78,9 @@ public class FrmGestioComandes extends javax.swing.JFrame {
             }
         });
 
+        btnEsborraComanda.setBackground(new java.awt.Color(0, 0, 0));
+        btnEsborraComanda.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btnEsborraComanda.setForeground(new java.awt.Color(255, 0, 0));
         btnEsborraComanda.setText("Esborra Comanda");
         btnEsborraComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,9 +107,9 @@ public class FrmGestioComandes extends javax.swing.JFrame {
 
         btnUrgent.setText("Urgent");
 
-        afegirComanda.setBackground(new java.awt.Color(51, 51, 51));
+        afegirComanda.setBackground(new java.awt.Color(0, 0, 0));
         afegirComanda.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        afegirComanda.setForeground(new java.awt.Color(0, 204, 255));
+        afegirComanda.setForeground(new java.awt.Color(0, 255, 255));
         afegirComanda.setText("Afegeix Comanda");
         afegirComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,11 +187,11 @@ public class FrmGestioComandes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEsborraComanda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addComponent(btnAfegeixComanda)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,8 +208,10 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         for (int i : llistaComandes.getSelectedIndices()) {
             try {
                 AppMercatUB.controlador.esborrarComanda(i);
-            } catch (MercatException ex) {
-                Logger.getLogger(FrmGestioComandes.class.getName()).log(Level.SEVERE, null, ex);
+            }  catch (NumberFormatException exc) {
+                JOptionPane.showMessageDialog(null, "Has deixat algún camp buit.");
+            }catch (MercatException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
 
@@ -210,8 +219,6 @@ public class FrmGestioComandes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEsborraComandaActionPerformed
 
     private void llistaComandesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_llistaComandesValueChanged
-        // TODO add your handling code here:
-
         // Solo se podrá borrar cuando el botón de urgente esté desactivado
         btnEsborraComanda.setEnabled(!llistaComandes.isSelectionEmpty() && !btnUrgents.isSelected());
     }//GEN-LAST:event_llistaComandesValueChanged
@@ -231,10 +238,11 @@ public class FrmGestioComandes extends javax.swing.JFrame {
             afegirComanda.setEnabled(true);
             int quantitat = Integer.parseInt(inpQuantitat.getText());
             boolean esUrgent = btnUrgent.isSelected();
-
+            
             AppMercatUB.controlador.afegirComanda(articlePos, clientPos, quantitat, esUrgent);
+            JOptionPane.showMessageDialog(null, "Comanda afegida amb èxit!");
         } catch (MercatException ex) {
-            Logger.getLogger(FrmGestioComandes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } finally {
             panel.setVisible(false);
         }

@@ -7,6 +7,7 @@ package prog2.vista;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -178,10 +179,15 @@ public class DialogClient extends javax.swing.JDialog {
             String nom = inpNom.getText();
             String adreca = inpAdreca.getText();
             
-            AppMercatUB.controlador.afegirClient(correu, nom, adreca, premium);
+            if(correu.length() == 0 || nom.length() == 0 || adreca.length()==0)
+                throw new RuntimeException();
             
-        } catch (MercatException ex) {
-            Logger.getLogger(DialogClient.class.getName()).log(Level.SEVERE, null, ex);
+            AppMercatUB.controlador.afegirClient(correu, nom, adreca, premium);
+            JOptionPane.showMessageDialog(null, "Client afegit amb èxit!");
+        }catch (MercatException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (RuntimeException exc) {
+            JOptionPane.showMessageDialog(null, "Has deixat algún camp buit.");
         }finally{
             this.dispose();
         }

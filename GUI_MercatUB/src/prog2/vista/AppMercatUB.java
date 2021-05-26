@@ -44,7 +44,11 @@ public class AppMercatUB extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mercat UB");
+        setBackground(new java.awt.Color(204, 255, 255));
 
+        btnArticles.setBackground(new java.awt.Color(0, 0, 0));
+        btnArticles.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnArticles.setForeground(new java.awt.Color(255, 255, 255));
         btnArticles.setText("Articles");
         btnArticles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +56,9 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         });
 
+        btnClients.setBackground(new java.awt.Color(0, 0, 0));
+        btnClients.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnClients.setForeground(new java.awt.Color(255, 255, 255));
         btnClients.setText("Clients");
         btnClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +66,9 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         });
 
+        btnComandes.setBackground(new java.awt.Color(0, 0, 0));
+        btnComandes.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnComandes.setForeground(new java.awt.Color(255, 255, 255));
         btnComandes.setText("Comandes");
         btnComandes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +76,9 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         });
 
+        btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        btnGuardar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +86,9 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         });
 
+        btnCarregar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCarregar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnCarregar.setForeground(new java.awt.Color(255, 153, 51));
         btnCarregar.setText("Carregar");
         btnCarregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +105,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnComandes, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(btnComandes, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCarregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(241, 241, 241))
@@ -97,7 +113,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addComponent(btnArticles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClients)
@@ -107,7 +123,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 .addComponent(btnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCarregar)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
