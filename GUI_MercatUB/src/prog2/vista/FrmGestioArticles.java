@@ -39,7 +39,7 @@ public class FrmGestioArticles extends javax.swing.JFrame {
         setTitle("Articles");
 
         btnVisualitzaArticles.setBackground(new java.awt.Color(0, 0, 0));
-        btnVisualitzaArticles.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnVisualitzaArticles.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnVisualitzaArticles.setForeground(new java.awt.Color(0, 255, 255));
         btnVisualitzaArticles.setText("Visualitzar Articles");
         btnVisualitzaArticles.addActionListener(new java.awt.event.ActionListener() {
@@ -49,7 +49,7 @@ public class FrmGestioArticles extends javax.swing.JFrame {
         });
 
         btnAfegirArticle.setBackground(new java.awt.Color(0, 0, 0));
-        btnAfegirArticle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnAfegirArticle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnAfegirArticle.setForeground(new java.awt.Color(102, 255, 102));
         btnAfegirArticle.setText("Afegir Article");
         btnAfegirArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class FrmGestioArticles extends javax.swing.JFrame {
                 .addComponent(btnAfegirArticle)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

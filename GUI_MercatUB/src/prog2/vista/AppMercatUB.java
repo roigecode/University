@@ -23,6 +23,9 @@ public class AppMercatUB extends javax.swing.JFrame {
      */
     public static Controlador controlador = new Controlador();
 
+    /**
+     * Constructor de AppMercatUB
+     */
     public AppMercatUB() {
         initComponents();
     }
@@ -47,7 +50,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 255));
 
         btnArticles.setBackground(new java.awt.Color(0, 0, 0));
-        btnArticles.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnArticles.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnArticles.setForeground(new java.awt.Color(255, 255, 255));
         btnArticles.setText("Articles");
         btnArticles.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +60,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         });
 
         btnClients.setBackground(new java.awt.Color(0, 0, 0));
-        btnClients.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnClients.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnClients.setForeground(new java.awt.Color(255, 255, 255));
         btnClients.setText("Clients");
         btnClients.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +70,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         });
 
         btnComandes.setBackground(new java.awt.Color(0, 0, 0));
-        btnComandes.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnComandes.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnComandes.setForeground(new java.awt.Color(255, 255, 255));
         btnComandes.setText("Comandes");
         btnComandes.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +80,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         });
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
-        btnGuardar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(0, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +90,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         });
 
         btnCarregar.setBackground(new java.awt.Color(0, 0, 0));
-        btnCarregar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnCarregar.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnCarregar.setForeground(new java.awt.Color(255, 153, 51));
         btnCarregar.setText("Carregar");
         btnCarregar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +106,9 @@ public class AppMercatUB extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnComandes, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(btnArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClients, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComandes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCarregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(241, 241, 241))
@@ -113,7 +116,7 @@ public class AppMercatUB extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(btnArticles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClients)
@@ -129,24 +132,40 @@ public class AppMercatUB extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Aquest mètode és l'encarregat de la gestió del botó d'Articles
+     * @param evt 
+     */
     private void btnArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticlesActionPerformed
         // TODO add your handling code here:
         FrmGestioArticles frmGA = new FrmGestioArticles();
         frmGA.setVisible(true);
     }//GEN-LAST:event_btnArticlesActionPerformed
 
+    /**
+     * Aquest mètode és l'encarregat de la gestió del botó de Clients
+     * @param evt 
+     */
     private void btnClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientsActionPerformed
         // TODO add your handling code here:
         FrmGestioClients frmGC = new FrmGestioClients();
         frmGC.setVisible(true);
     }//GEN-LAST:event_btnClientsActionPerformed
 
+    /**
+     * Aquest mètode és l'encarregat de la gestió del botó de Comandes
+     * @param evt 
+     */
     private void btnComandesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComandesActionPerformed
         // TODO add your handling code here:
         FrmGestioComandes frmGCom = new FrmGestioComandes();
         frmGCom.setVisible(true);
     }//GEN-LAST:event_btnComandesActionPerformed
 
+    /**
+     * Aquest mètode és l'encarregat de la gestió del botó de Guardar
+     * @param evt 
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             String ruta = JOptionPane.showInputDialog("Escriu la ruta del arxiu: ");
@@ -158,6 +177,10 @@ public class AppMercatUB extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    /**
+     * Aquest mètode és l'encarregat de la gestió del botó de Carregar
+     * @param evt 
+     */
     private void btnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarActionPerformed
 
         // TODO add your handling code here:

@@ -60,7 +60,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         });
 
         btnAfegeixComanda.setBackground(new java.awt.Color(0, 0, 0));
-        btnAfegeixComanda.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btnAfegeixComanda.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnAfegeixComanda.setForeground(new java.awt.Color(0, 255, 0));
         btnAfegeixComanda.setText("Afegeix Comanda");
         btnAfegeixComanda.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         });
 
         btnEsborraComanda.setBackground(new java.awt.Color(0, 0, 0));
-        btnEsborraComanda.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btnEsborraComanda.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnEsborraComanda.setForeground(new java.awt.Color(255, 0, 0));
         btnEsborraComanda.setText("Esborra Comanda");
         btnEsborraComanda.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +189,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
                 .addComponent(btnAfegeixComanda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
