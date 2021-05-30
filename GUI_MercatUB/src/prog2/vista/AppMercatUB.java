@@ -53,6 +53,11 @@ public class AppMercatUB extends javax.swing.JFrame {
         btnArticles.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btnArticles.setForeground(new java.awt.Color(255, 255, 255));
         btnArticles.setText("Articles");
+        btnArticles.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                btnArticlesStateChanged(evt);
+            }
+        });
         btnArticles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnArticlesActionPerformed(evt);
@@ -200,6 +205,10 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCarregarActionPerformed
+
+    private void btnArticlesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnArticlesStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnArticlesStateChanged
 
     /**
      * @param args the command line arguments

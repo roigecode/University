@@ -88,18 +88,30 @@ public class FrmGestioArticles extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Aquest mètode ens permet obrir el menú per afegir clients
+     * @param evt 
+     */
     private void btnAfegirArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirArticleActionPerformed
         // TODO add your handling code here:
         DialogArticle dialog = new DialogArticle(this,true);
         dialog.setVisible(true);
     }//GEN-LAST:event_btnAfegirArticleActionPerformed
 
+    /**
+     * Aquest mètode ens permet mitjançant una crida a un mètode auxiliar visualitzar
+     * tots els articles
+     * @param evt 
+     */
     private void btnVisualitzaArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualitzaArticlesActionPerformed
         // TODO add your handling code here:
         showArticles();
         
     }//GEN-LAST:event_btnVisualitzaArticlesActionPerformed
 
+    /**
+     * Aquest mètode auxiliar és l'encarregat de mostrar els articles
+     */
     void showArticles() {
         DefaultListModel model = new DefaultListModel();
         model.clear();

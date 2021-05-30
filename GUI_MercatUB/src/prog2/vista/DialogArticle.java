@@ -142,6 +142,10 @@ public class DialogArticle extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Aquest mètode permet afegir un article i fa les comprovacions adients
+     * @param evt 
+     */
     private void btnAfegirArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirArticleActionPerformed
         try {
             // TODO add your handling code here:

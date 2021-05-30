@@ -169,6 +169,10 @@ public class DialogClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_inpCorreuActionPerformed
 
+    /**
+     * Aquest mètode permet crear un nou client i fa les comprovacions adients
+     * @param evt 
+     */
     private void btnAfegirClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirClientActionPerformed
         try {
             // TODO add your handling code here:

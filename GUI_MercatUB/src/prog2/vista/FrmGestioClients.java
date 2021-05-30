@@ -92,6 +92,9 @@ public class FrmGestioClients extends javax.swing.JFrame {
         showClients();
     }//GEN-LAST:event_btnVisualitzarActionPerformed
 
+    /**
+     * Mètode auxiliar que ens permet mostrar els clients
+     */
     void showClients() {
         DefaultListModel model = new DefaultListModel();
         model.clear();
@@ -104,6 +107,10 @@ public class FrmGestioClients extends javax.swing.JFrame {
         llistaClients.setModel(model);
     }
 
+    /**
+     * Mètode que permet obrir el formulari per afegir un client
+     * @param evt 
+     */
     private void btnAfegirClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirClientActionPerformed
         // TODO add your handling code here:
         DialogClient dialog = new DialogClient(this, true);

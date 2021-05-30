@@ -200,6 +200,10 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         showComandes(btnUrgents.isSelected());
     }//GEN-LAST:event_btnVisualitzaComandesActionPerformed
 
+    /**
+     * Aquest mètode permet esborrar una comanda
+     * @param evt 
+     */
     private void btnEsborraComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsborraComandaActionPerformed
         // TODO add your handling code here:
 
@@ -207,7 +211,7 @@ public class FrmGestioComandes extends javax.swing.JFrame {
             try {
                 AppMercatUB.controlador.esborrarComanda(i);
             }  catch (NumberFormatException exc) {
-                JOptionPane.showMessageDialog(null, "Has deixat algún camp buit.");
+                JOptionPane.showMessageDialog(null, "No has seleccionat adientment la comanda.");
             }catch (MercatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -216,11 +220,19 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         showComandes(btnUrgents.isSelected());
     }//GEN-LAST:event_btnEsborraComandaActionPerformed
 
+    /**
+     * Mètode que gestiona l'activació del botó per esborrar comandes
+     * @param evt 
+     */
     private void llistaComandesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_llistaComandesValueChanged
         // Solo se podrá borrar cuando el botón de urgente esté desactivado
         btnEsborraComanda.setEnabled(!llistaComandes.isSelectionEmpty() && !btnUrgents.isSelected());
     }//GEN-LAST:event_llistaComandesValueChanged
 
+    /**
+     * Mètode que permet afegir una comanda mostrant el panel adient
+     * @param evt 
+     */
     private void btnAfegeixComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegeixComandaActionPerformed
         // TODO add your handling code here:
         panel.setVisible(true);
@@ -228,6 +240,11 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         showClients();
     }//GEN-LAST:event_btnAfegeixComandaActionPerformed
 
+    /**
+     * Mètode que permet afegir una comanda cridant al seu constructor i fa les 
+     * comprovacions adients
+     * @param evt 
+     */
     private void afegirComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afegirComandaActionPerformed
         try {
             // TODO add your handling code here:
@@ -246,10 +263,14 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_afegirComandaActionPerformed
 
+    
     private void btnUrgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUrgentsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUrgentsActionPerformed
 
+    /**
+     * Mètode auxiliar que ens permet mostrar tots els articles
+     */
     void showArticles() {
         DefaultListModel model = new DefaultListModel();
         model.clear();
@@ -263,6 +284,9 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         llistaArticles.setModel(model);
     }
 
+    /**
+     * Mètode auxiliar que ens permet mostrar tots els clients
+     */
     void showClients() {
         DefaultListModel model = new DefaultListModel();
         model.clear();
@@ -276,6 +300,12 @@ public class FrmGestioComandes extends javax.swing.JFrame {
         llistaClients.setModel(model);
     }
 
+    /**
+     * Mètode auxiliar que ens permet mostrar totes les comandes i gestiona
+     * mitjançant un paràmetre booleà si volem imprimir totes les comandes o 
+     * només les urgents
+     * @param urgent booleà per indicar quin tipus de comandes imprimir
+     */
     void showComandes(boolean urgent) {
         DefaultListModel model = new DefaultListModel();
         model.clear();
