@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+int main(int argc, char const *argv[]){
     float i = 1;
     float sn = 0;
     float sn1 = 0;
@@ -26,4 +26,6 @@ int main(){
     }while(i > 1);
 
     printf(" Sn := %f || Sn-1 := %f",sn,sn1);
+
+    return 0;
 }
