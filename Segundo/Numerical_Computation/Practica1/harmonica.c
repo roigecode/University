@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]){
         i--;
     }while(i > 1);
 
-    printf(" b) Sn := %f",sn);
+    printf(" b) Sn := %f\n",sn);
 
     return 0;
 }
