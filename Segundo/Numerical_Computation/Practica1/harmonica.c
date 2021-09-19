@@ -12,8 +12,7 @@ int main(int argc, char const *argv[]){
         i++;
     }while(sn1 != sn);
 
-    printf("\n Sn := %f || Sn-1 := %f",sn,sn1);
-    printf("\n Valor de i: %f\n",i);
+    printf("\n a) Sn := %f en %d iteracions. \n",sn,(int)i);
 
     sn = 0; 
     sn1 = 0;
@@ -25,7 +24,7 @@ int main(int argc, char const *argv[]){
         i--;
     }while(i > 1);
 
-    printf(" Sn := %f || Sn-1 := %f",sn,sn1);
+    printf(" b) Sn := %f",sn);
 
     return 0;
 }
