@@ -1,0 +1,47 @@
+---------------
+| Exercici 1: |
+---------------
+a) El programa s'aturarà degut a que l'ordinador no té la capacitat de processar infinites dades significatives. S'aturarà prop de 2x10^6.
+b) No donarà el mateix resultat. Això és perque quan comencem la suma per un valor molt petit, l'ordinador considera com a significatius nombres més petits.
+En canvi, quan comencem a calcular per valors més elevats de x quan anem en ordre invers arribarem a un punt que deixarà de considerar significatius els valors petits.
+D'aqui la diferència.
+
+---------------
+| Exercici 2: |
+---------------
+a) Exercici2.png
+b) Taylor. Pel calcul d'error de la serie de taylor |0.01^(n-1)/(n+1)!| <= 10^(-12). 
+
+Petit programa fet amb Python per calcular la fita de l'error:
+
+import math
+err = 10**(-12)
+n = 1
+def func(n):
+    return (0.001**(n-1)) / math.factorial(n+1)
+
+while(func(n)>=err):
+    print(n)
+    n+=1
+
+print("Final:",n-1, " termes taylor: ",n-2)
+
+###########################################
+# >> OUTPUT: Final: 4 termes de taylor: 3 #
+###########################################
+
+Per tant, el terme que busquem és 4 per tal que l'error sigui menor a 10^(-12).
+
+c) Error del gràfic (a): 
+
+---------------
+| Exercici 3: |
+---------------
+a) Double: -0.188458 
+   Float:  -0.197039
+
+   Veiem la importància dels digits significatius.
+
+b) Error a x_40:
+- Double:
+- Float: 

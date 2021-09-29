@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]){
     // Apartat b):
     do{
         sn1 = sn;
-        sn += 1/i;
+        sn += 1.f/i;
         i--;
     }while(i > 1);
 
