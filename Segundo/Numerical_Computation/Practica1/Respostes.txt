@@ -9,7 +9,7 @@ D'aqui la diferència.
 ---------------
 | Exercici 2: |
 ---------------
-a) Exercici2.png
+a) Clarament el dibuix dins aquest interval és incorrecte com es pot veure en l'arxiu: "Exercici2.png"
 b) Taylor. Pel calcul d'error de la serie de taylor |0.01^(n-1)/(n+1)!| <= 10^(-12). 
 
 Petit programa fet amb Python per calcular la fita de l'error:
