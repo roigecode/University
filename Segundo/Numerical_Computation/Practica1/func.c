@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 
     while(x<=0.001){
         fprintf(sortida,"%.11le %.11le\n",x,f_taylor(x));
-        x += 0.000025;
+        x += 0.0000025;
     }
     fclose(sortida);
     return 0;
